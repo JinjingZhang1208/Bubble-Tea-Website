@@ -1,37 +1,100 @@
-.navbar {
-    background-color: #4CAF50;
-    overflow: hidden;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .logo img {
-    width: 100px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-  }
-  
-  .links {
-    display: flex;
-    align-items: center;
-  }
-  
-  .link {
-    margin-right: 20px;
-    text-decoration: none;
-    color: white;
-  }
-  
-  .linkLogo img {
-    width: 40px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-  }
-  
-  /* Add more styles as needed */
-  
+@import url('https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap');
 
-  
+/* Apply the provided :root styles for colors */
+:root {
+  --color1: #001219;
+  --color2: hsl(190, 100%, 23%);
+  --color3: #3d9397;
+  --color4: #94d28d;
+  --color5: #e9d8a6;
+  --color6: #ee9800;
+  --color7: #ca6702;
+  --color8: #bb3e03;
+  --color9: #ae2012;
+  --color10: #9b2226;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #dbe5de;
+  padding: 0;
+  margin: 0;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: var(--color5);
+  padding: 1rem 0; 
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo img {
+  max-width: 160px; 
+  height: auto;
+}
+
+h1 {
+  color: var(--color1); 
+  margin: 0; 
+}
+
+.links {
+  display: flex;
+  gap: 1rem; 
+}
+
+.link {
+  text-decoration: none;
+  font-size: 1rem; 
+  color: white;
+  padding: 0.5rem;
+  background-color: var(--color10);
+  border-radius: 5px;
+}
+
+.link h6 {
+  margin: 0; 
+}
+
+.link:hover {
+  background-color: var(--color1);
+  color: var(--color5);
+}
+
+.linkLogo img {
+  max-width: 31px; 
+  height: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .links {
+    flex-direction: column; 
+    align-items: flex-start; 
+  }
+
+  .link {
+    margin-bottom: 0.5rem; 
+  }
+
+  .linkLogo {
+    margin-top: 0.5rem; 
+  }
+}
