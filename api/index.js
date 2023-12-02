@@ -1,8 +1,8 @@
-const express = require('express');
-const { PrismaClient } = require('@prisma/client');
-const morgan = require('morgan');
-const cors = require('cors');
-const dotenv = require('dotenv');
+import express from 'express';
+import { PrismaClient } from '@prisma/client';
+import morgan from 'morgan';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
 const app = express();
 const prisma = new PrismaClient();

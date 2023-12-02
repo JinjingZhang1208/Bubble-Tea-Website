@@ -17,7 +17,8 @@ model User {
 
   // Relationships
   orders        Order[]
-  reviews       Review[]   
+  reviews       Review[]
+  carts         Cart[]   // Add this line
 }
 
 model MenuItem {
@@ -25,10 +26,12 @@ model MenuItem {
   name        String
   description String
   price       Float
+  picture     String
 
   // Relationships
-  reviews     Review[]   
+  reviews     Review[]
   orders      Order[]
+  carts       Cart[]   // Add this line
 }
 
 model Review {
@@ -53,6 +56,18 @@ model Order {
 
   // Relationships
   user       User   @relation(fields: [userId], references: [id])
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+}
+
+model Cart {
+  id         Int      @id @default(autoincrement())
+  userId     Int?
+  menuItemId Int
+  quantity   Int
+  createdAt  DateTime @default(now())
+
+  // Relationships
+  user       User?    @relation(fields: [userId], references: [id])
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
 }
 
