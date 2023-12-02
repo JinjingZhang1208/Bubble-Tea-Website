@@ -1,0 +1,37 @@
+.navbar {
+    background-color: #4CAF50;
+    overflow: hidden;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .logo img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .links {
+    display: flex;
+    align-items: center;
+  }
+  
+  .link {
+    margin-right: 20px;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .linkLogo img {
+    width: 40px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  /* Add more styles as needed */
+  
+
+  
