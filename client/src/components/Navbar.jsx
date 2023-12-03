@@ -8,6 +8,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Navbar = () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
+  const handleAuthAction = () => {
+    if (isAuthenticated) {
+      logout({ returnTo: window.location.origin });
+    } else {
+      loginWithRedirect();
+    }
+  };
+
   return (
     <div className='navbar'>
       <div className="container">
@@ -16,18 +24,25 @@ const Navbar = () => {
         </div>
         <h1>Bubble Tea Company</h1>
         <div className="links">
-          <Link className="link" to="/register">
-            <h6>Register</h6>
-          </Link>
-          <Link className="link" to="/login">
-            <h6>{isAuthenticated ? 'Logout' : 'Login'}</h6>
-          </Link>
-          {isAuthenticated && (
-            <Link className="link" to="/profile">
-              <h6>{user.name}</h6>
-            </Link>
+          {isAuthenticated ? (
+            <>
+              <Link className="link" to="/profile">
+                <h6>{user.name}</h6>
+              </Link>
+              <button onClick={handleAuthAction}>Logout</button>
+            </>
+          ) : (
+            <>
+              <button onClick={handleAuthAction}>
+                <h6>Login</h6>
+              </button>
+
+              <button onClick={() => loginWithRedirect({ screen_hint: "signup" })}>
+                <h6>Register</h6>
+              </button>
+            </>
           )}
-          <Link className="linkLogo" to="/cart">
+          <Link className="link" to="/cart">
             <img src={CartLogo} alt="cartLogo" />
           </Link>
         </div>

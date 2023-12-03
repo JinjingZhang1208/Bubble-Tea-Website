@@ -34,7 +34,7 @@ body {
 /* Navbar styles */
 .navbar {
   background-color: var(--color5);
-  padding: 1rem 0; 
+  padding: 1rem 0;
 }
 
 .container {
@@ -46,31 +46,31 @@ body {
 }
 
 .logo img {
-  max-width: 160px; 
+  max-width: 160px;
   height: auto;
 }
 
 h1 {
-  color: var(--color1); 
-  margin: 0; 
+  color: var(--color1);
+  margin: 0;
 }
 
 .links {
   display: flex;
-  gap: 1rem; 
+  gap: 0.5rem;
 }
 
 .link {
   text-decoration: none;
-  font-size: 1rem; 
+  font-size: 0.8rem; /* Reduced the font size further */
   color: white;
-  padding: 0.5rem;
+  padding: 0.2rem 0.4rem; /* Adjusted the padding for a smaller button */
   background-color: var(--color10);
   border-radius: 5px;
 }
 
 .link h6 {
-  margin: 0; 
+  margin: 0;
 }
 
 .link:hover {
@@ -79,23 +79,22 @@ h1 {
 }
 
 .linkLogo img {
-  max-width: 31px; 
-  height: auto;
+  max-width: 20px; /* Reduced the max-width of the cart logo further */
+  height: 20px;
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
   .links {
-    flex-direction: column; 
-    align-items: flex-start; 
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .link {
-    margin-bottom: 0.5rem; 
+    margin-bottom: 0.5rem;
   }
 
   .linkLogo {
-    margin-top: 0.5rem; 
+    margin-top: 0.5rem;
   }
 }
-
