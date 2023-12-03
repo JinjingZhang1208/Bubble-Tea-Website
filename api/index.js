@@ -1,17 +1,14 @@
-import express from 'express';
-import { PrismaClient } from '@prisma/client';
-import morgan from 'morgan';
-import cors from 'cors';
-import dotenv from 'dotenv';
-
+import express from "express";
+import { PrismaClient } from "@prisma/client";
+import morgan from "morgan";
+import cors from "cors";
 const app = express();
-const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan('dev'));
-dotenv.config();
+app.use(morgan("dev"));
+const prisma = new PrismaClient();
 
 app.get('/api/menuItems', async (req, res) => {
   try {
