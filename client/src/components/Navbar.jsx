@@ -28,9 +28,23 @@ const Navbar = () => {
         <div className="links">
           {isAuthenticated ? (
             <>
-              <button className="link" to="/profile">
-                <h6>{user.name}</h6>
-              </button>
+              <Link to="/profile" className="link">
+                <button style={{
+                  backgroundColor: '#131212',
+                  color: '#e1e9ef',
+                  border: 'none',
+                  padding: '10px 15px',
+                  fontSize: '18px',
+                  cursor: 'pointer',
+                  width: '180px', 
+                  height: '40px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                }}>
+                  <h6>{user.name}</h6>
+                </button>
+              </Link>
               <button onClick={handleAuthAction}>Logout</button>
             </>
           ) : (
@@ -49,4 +63,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

@@ -69,9 +69,9 @@ h1 {
 }
 
 /* Button styles */
-.button {
-  background-color: #ffffff;
-  color: #3498db;
+.links button {
+  background-color: #131212;
+  color: #e1e9ef;
   border: none;
   padding: 10px 15px;
   font-size: 16px;
