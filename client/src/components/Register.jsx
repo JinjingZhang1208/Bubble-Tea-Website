@@ -6,9 +6,8 @@ const RegisterComponent = () => {
 
   return (
     <div>
-      <h2>Register</h2>
       <button onClick={() => signupWithRedirect({ screen_hint: 'signup' })}>
-        Register with Auth0
+        Register
       </button>
     </div>
   );

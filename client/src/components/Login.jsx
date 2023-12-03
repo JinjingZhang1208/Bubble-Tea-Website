@@ -6,8 +6,7 @@ const LoginComponent = () => {
 
   return (
     <div>
-      <h2>Login</h2>
-      <button onClick={() => loginWithRedirect()}>Login with Auth0</button>
+      <button onClick={() => loginWithRedirect()}>Login</button>
     </div>
   );
 };

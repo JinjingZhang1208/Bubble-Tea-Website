@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap');
 
 /* Apply the provided :root styles for colors */
 :root {
@@ -31,59 +31,61 @@ body {
   margin: 0;
 }
 
-/* Navbar styles */
+/* Basic styles for the navbar */
 .navbar {
-  background-color: var(--color5);
-  padding: 1rem 0;
+  background-color: #e9d8a6;
+  color: #ffffff;
+  padding: 10px 0;
 }
 
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
+/* Logo styles */
 .logo img {
-  max-width: 160px;
+  max-width: 200px;
   height: auto;
 }
 
+/* Title styles */
 h1 {
-  color: var(--color1);
   margin: 0;
 }
 
+/* Link styles */
 .links {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
 }
 
 .link {
+  color: #ffffff;
   text-decoration: none;
-  font-size: 0.8rem; /* Reduced the font size further */
-  color: white;
-  padding: 0.2rem 0.4rem; /* Adjusted the padding for a smaller button */
-  background-color: var(--color10);
-  border-radius: 5px;
+  margin-right: 20px;
+  font-size: 16px;
 }
 
-.link h6 {
-  margin: 0;
+/* Button styles */
+.button {
+  background-color: #ffffff;
+  color: #3498db;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.link:hover {
-  background-color: var(--color1);
-  color: var(--color5);
+/* Cart logo styles */
+.link img {
+  max-width: 30px;
+  height: auto;
+  margin-left: 20px;
 }
 
-.linkLogo img {
-  max-width: 20px; /* Reduced the max-width of the cart logo further */
-  height: 20px;
-}
-
-/* Responsive styles */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .links {
     flex-direction: column;
@@ -91,10 +93,7 @@ h1 {
   }
 
   .link {
-    margin-bottom: 0.5rem;
-  }
-
-  .linkLogo {
-    margin-top: 0.5rem;
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 }
