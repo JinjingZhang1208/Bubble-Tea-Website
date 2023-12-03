@@ -1,3 +1,4 @@
+// Footer.js
 import React from 'react';
 import './Footer.css';
 
@@ -8,15 +9,16 @@ const Footer = () => {
         <div className='footer-content'>
           <div className='footer-section'>
             <h3>About Us</h3>
-            <p>No. 1 Bubble Tea Company in Vancouver.</p>
+            <p>Top 1 Bubble Tea in Vancouver.</p>
           </div>
           <div className='footer-section'>
             <h3>Contact</h3>
-            <p>Phone: 123456789</p>
+            <p>Email: neububbletea.com</p>
+            <p>Phone: +1 123 456 7890</p>
           </div>
-        </div>
-        <div className='footer-section'>
-          <p>&copy; 2023 northeasternbubbletea.com.   All Rights Reserved.</p>
+          <div className='footer-section'>
+            <p>&copy; 2023 neububbletea.com. All Rights Reserved.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -24,3 +26,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

@@ -1,13 +1,21 @@
+/* Home.css */
+
+/* Apply the provided :root styles for colors */
+:root {
+  --color5: #e9d8a6;
+  --color1: #001219;
+}
+
 /* Home styles */
 .home {
   background-color: #dbe5de;
-  padding: 2rem 1rem;
+  padding: 2rem 0; /* Adjust padding for spacing */
 }
 
 .details {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid layout */
+  gap: 1.5rem; /* Adjust gap between items */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -17,17 +25,11 @@
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-.item:hover {
-  transform: translateY(-5px);
 }
 
 .item-img img {
-  max-width: 100%;
+  max-width: 100%; /* Ensure images don't exceed their container */
   height: auto;
-  border-radius: 8px;
 }
 
 .item-text {
@@ -36,37 +38,32 @@
 
 h2 {
   font-size: 1.5rem;
-  color: #001219;
-  margin-bottom: 0.5rem;
+  color: var(--color1);
 }
 
 h3 {
   font-size: 1.2rem;
-  color: #e9d8a6;
+  color: var(--color5);
 }
 
 button {
-  background-color: #001219;
+  background-color: var(--color1);
   color: white;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 button:hover {
-  background-color: #e76f51;
+  background-color: var(--color10);
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
   .details {
-    grid-template-columns: 1fr;
-  }
-
-  .item {
-    max-width: 100%;
+    grid-template-columns: 1fr; /* Single column on smaller screens */
   }
 }
 
