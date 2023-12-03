@@ -4,7 +4,6 @@ import Logo from '../img/boba.png';
 import CartLogo from "../img/shoppingCart.png";
 import "./Navbar.css";
 import { useAuth0 } from '@auth0/auth0-react';
-import RegisterComponent from './Register.jsx';
 import LoginComponent from './Login.jsx';
 
 const Navbar = () => {
@@ -50,7 +49,6 @@ const Navbar = () => {
           ) : (
             <>
               <LoginComponent />
-              <RegisterComponent />
             </>
           )}
           <Link className="link" to="/cart">
