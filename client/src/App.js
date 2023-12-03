@@ -7,6 +7,8 @@ import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
+import Profile from './pages/Profile.jsx';
+import AuthDebugger from './components/AuthDebugger.jsx';
 import './App.css';
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/detail/:id" element={<div><Navbar /><Detail /><Footer /></div>} />
+            <Route path="/auth-debug" element={<AuthDebugger />} />
           </Routes>
         </Router>
       </div>
