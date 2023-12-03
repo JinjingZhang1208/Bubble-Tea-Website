@@ -28,9 +28,9 @@ const Navbar = () => {
         <div className="links">
           {isAuthenticated ? (
             <>
-              <Link className="link" to="/profile">
+              <button className="link" to="/profile">
                 <h6>{user.name}</h6>
-              </Link>
+              </button>
               <button onClick={handleAuthAction}>Logout</button>
             </>
           ) : (
