@@ -10,7 +10,6 @@ const Profile = () => {
       <div>
         <p>Name: {user.name}</p>
         <p>Email: {user.email}</p>
-        {/* Add more fields as needed */}
       </div>
     </div>
   );

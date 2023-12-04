@@ -1,21 +1,16 @@
-/* Home.css */
-
-/* Apply the provided :root styles for colors */
 :root {
   --color5: #e9d8a6;
   --color1: #001219;
 }
 
-/* Home styles */
 .home {
   background-color: #dbe5de;
-  padding: 2rem 0; /* Adjust padding for spacing */
+  padding: 2rem 0; 
 }
 
 .details {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid layout */
-  gap: 1.5rem; /* Adjust gap between items */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -28,7 +23,7 @@
 }
 
 .item-img img {
-  max-width: 100%; /* Ensure images don't exceed their container */
+  max-width: 100%; 
   height: auto;
 }
 
@@ -63,7 +58,6 @@ button:hover {
 /* Responsive styles */
 @media (max-width: 768px) {
   .details {
-    grid-template-columns: 1fr; /* Single column on smaller screens */
-  }
+    grid-template-columns: 1fr; 
 }
-
+}
