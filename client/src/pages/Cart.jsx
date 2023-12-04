@@ -67,7 +67,7 @@ const Cart = () => {
         <ul className="cartItem">
           {cartItems.map((item) => (
             <li key={item.id}>
-              <span className="item-name">{item.menuItem?.name || 'Unknown Item'}</span> - Quantity:{' '}
+              <span className="item-name">{item.menuItem.name || 'Unknown Item'}</span> - Quantity:{' '}
               <input
                 type="number"
                 value={item.quantity}

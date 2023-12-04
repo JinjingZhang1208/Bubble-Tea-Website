@@ -31,33 +31,64 @@ app.get('/api/menuItems', async (req, res) => {
   }
 });
 
+// Express.js route to add an item to the cart
 app.post('/api/cart', async (req, res) => {
-  try {
-    const { menuItemId } = req.body;
+  const { userId, menuItemName, quantity } = req.body;
 
-    // Update or create the Cart entry for the user (user might be authenticated or not)
-    const updatedCart = await prisma.cart.upsert({
-      where: { id: menuItemId }, // Use menuItemId as the id in the where condition
-      update: { quantity: { increment: 1 } },
-      create: { menuItemId, quantity: 1 },
+  try {
+    // Fetch the MenuItem by name to get its id
+    const menuItem = await prisma.menuItem.findUnique({
+      where: { name: menuItemName },
     });
 
-    res.status(200).json({ message: 'Item added to cart successfully', cart: updatedCart });
+    if (!menuItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+
+    // Add the item to the cart
+    const cartItem = await prisma.cart.create({
+      data: {
+        userId,
+        menuItemId: menuItem.id,
+        quantity,
+      },
+    });
+
+    res.json(cartItem);
   } catch (error) {
     console.error('Error adding item to cart:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
+
+// Express.js route to get cart items with MenuItem details
 app.get('/api/cart', async (req, res) => {
   try {
-    const cartItems = await prisma.cart.findMany();
-    res.json(cartItems);
+    const cartItems = await prisma.cart.findMany({
+      include: {
+        menuItem: true,
+      },
+    });
+
+    const cartWithDetails = cartItems.map((cartItem) => {
+      return {
+        id: cartItem.id,
+        userId: cartItem.userId,
+        menuItem: cartItem.menuItem, // This will include the MenuItem details
+        quantity: cartItem.quantity,
+        createdAt: cartItem.createdAt,
+        // ... other details
+      };
+    });
+
+    res.json(cartWithDetails);
   } catch (error) {
     console.error('Error fetching cart items:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 app.get('/api/menuItems/:id', async (req, res) => {
   try {
