@@ -28,41 +28,17 @@ const Cart = () => {
     fetchCartItems();
   }, []);
 
-  const addToCart = async (menuItemId) => {
-    try {
-      const response = await fetch('http://localhost:8000/api/cart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ menuItemId }),
-      });
-
-      if (response.ok) {
-        console.log('Item added to cart successfully!');
-        // No automatic redirection here
-      } else {
-        console.error('Failed to add item to cart:', response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error('Error adding item to cart:', error);
-    }
-  };
-
   const handleQuantityChange = async (itemId, newQuantity) => {
     try {
-      // Update the local state with the new quantity
       setCartItems((prevItems) =>
         prevItems.map((item) =>
           item.id === itemId ? { ...item, quantity: newQuantity } : item
         )
       );
-  
-      // Log the URL before making the fetch call
+
       const apiUrl = `http://localhost:8000/api/cart/${itemId}`;
       console.log('API URL:', apiUrl);
   
-      // Make an API call to update the quantity in the database
       const response = await fetch(apiUrl, {
         method: 'PATCH',
         headers: {
@@ -80,8 +56,7 @@ const Cart = () => {
       console.error('Error updating quantity:', error);
     }
   };
-  
-  
+   
   return (
     <div className="cart-container">
       <h1>Your Cart</h1>

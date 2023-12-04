@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); 
   
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -40,13 +39,14 @@ const Home = () => {
         body: JSON.stringify({ menuItemId }),
       });
   
-      if (response.ok) {
-        console.log('Item added to cart successfully!');
-      } else {
-        console.error('Failed to add item to cart:', response.status, response.statusText);
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Failed to add item to cart - ${response.status}: ${errorMessage}`);
       }
+  
+      console.log('Item added to cart successfully!');
     } catch (error) {
-      console.error('Error adding item to cart:', error);
+      console.error('Error adding item to cart:', error.message);
     }
   };  
 

@@ -88,32 +88,22 @@ app.listen(8000, () => {
   console.log('Server running on http://localhost:8000 🎉 🚀');
 });
 
-
 app.post('/api/cart', async (req, res) => {
-  const { userId, menuItemName, quantity } = req.body;
-
   try {
-    const menuItem = await prisma.menuItem.findUnique({
-      where: { name: menuItemName },
+    const { menuItemId } = req.body;
+    // Update or create the Cart entry for the user (user might be authenticated or not)
+    const updatedCart = await prisma.cart.upsert({
+      where: { id: menuItemId }, // Use menuItemId as the id in the where condition
+      update: { quantity: { increment: 1 } },
+      create: { menuItemId, quantity: 1 },
     });
-
-    if (!menuItem) {
-      return res.status(404).json({ error: 'Item not found' });
-    }
-    const cartItem = await prisma.cart.create({
-      data: {
-        userId,
-        menuItemId: menuItem.id,
-        quantity,
-      },
-    });
-
-    res.json(cartItem);
+    res.status(200).json({ message: 'Item added to cart successfully', cart: updatedCart });
   } catch (error) {
     console.error('Error adding item to cart:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 app.patch('/api/cart/:itemId', async (req, res) => {
   const itemId = parseInt(req.params.itemId, 10);
