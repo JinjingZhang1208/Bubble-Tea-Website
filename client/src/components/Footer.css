@@ -1,3 +1,5 @@
+/* Footer.css */
+
 :root {
   --color5: #e9d8a6;
   --color1: #001219;
@@ -37,6 +39,20 @@ p {
   margin: 0;
 }
 
+.map-container {
+  width: 100%;
+  max-width: 300px; /* Adjust the max-width as needed for larger screens */
+  margin-top: 20px;
+}
+
+.map {
+  width: 100%;
+  height: 300px; /* Adjust the height as needed */
+  border-radius: 8px; /* Add border-radius for a rounded appearance */
+  overflow: hidden; /* Hide any overflowing content within the map container */
+}
+
+
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .footer-content {
@@ -50,10 +66,3 @@ p {
   }
 }
 
-/* Additional styles for larger screens */
-@media (min-width: 769px) {
-  .footer-section {
-    flex: 1 1 calc(25% - 2rem); 
-    margin: 0 5.5rem; 
-  }
-}

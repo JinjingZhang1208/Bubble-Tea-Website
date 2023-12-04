@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import MapComponent from './MapComponent';
 
 const Footer = () => {
   return (
@@ -19,8 +20,11 @@ const Footer = () => {
           <p>&copy; 2023 northeasternbubbletea.com. All Rights Reserved.</p>
         </div>
       </div>
+      <div className='map-container'>
+        <MapComponent />
+      </div>
     </div>
-    
+   
   );
 };
 
