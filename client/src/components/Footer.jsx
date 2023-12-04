@@ -11,15 +11,16 @@ const Footer = () => {
             <p>No. 1 Bubble Tea Company in Vancouver.</p>
           </div>
           <div className='footer-section'>
-            <h3>Contact</h3>
-            <p>Phone: 123456789</p>
+            <h3>Location</h3>
+            <p>No. 1234 Bubble Street, Vancouver, BC</p>
           </div>
         </div>
         <div className='footer-section'>
-          <p>&copy; 2023 northeasternbubbletea.com.   All Rights Reserved.</p>
+          <p>&copy; 2023 northeasternbubbletea.com. All Rights Reserved.</p>
         </div>
       </div>
     </div>
+    
   );
 };
 
