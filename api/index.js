@@ -89,7 +89,6 @@ app.get('/api/cart', async (req, res) => {
   }
 });
 
-
 app.get('/api/menuItems/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -119,6 +118,25 @@ app.get('/api/menuItems/:id/reviews', async (req, res) => {
     res.json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Express.js route to update the quantity in the cart
+app.patch('/api/cart/:itemId', async (req, res) => {
+  const itemId = parseInt(req.params.itemId, 10);
+  const { quantity } = req.body;
+
+  try {
+    // Update the quantity in the database
+    const updatedCartItem = await prisma.cart.update({
+      where: { id: itemId },
+      data: { quantity: parseInt(quantity, 10) },
+    });
+
+    res.json(updatedCartItem);
+  } catch (error) {
+    console.error('Error updating quantity in the database:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

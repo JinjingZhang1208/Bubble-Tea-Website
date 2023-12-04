@@ -49,14 +49,39 @@ const Cart = () => {
     }
   };
 
-  const handleQuantityChange = (itemId, newQuantity) => {
-    // Update the local state with the new quantity
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: newQuantity } : item
-      )
-    );
+  const handleQuantityChange = async (itemId, newQuantity) => {
+    try {
+      // Update the local state with the new quantity
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.id === itemId ? { ...item, quantity: newQuantity } : item
+        )
+      );
+  
+      // Log the URL before making the fetch call
+      const apiUrl = `http://localhost:8000/api/cart/${itemId}`;
+      console.log('API URL:', apiUrl);
+  
+      // Make an API call to update the quantity in the database
+      const response = await fetch(apiUrl, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ quantity: newQuantity }),
+      });
+  
+      if (!response.ok) {
+        console.error('Failed to update quantity in the database:', response.status, response.statusText);
+      } else {
+        console.log('Quantity updated in the database successfully!');
+      }
+    } catch (error) {
+      console.error('Error updating quantity:', error);
+    }
   };
+  
+    
 
   return (
     <div className="cart-container">
