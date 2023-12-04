@@ -59,6 +59,40 @@ app.get('/api/cart', async (req, res) => {
   }
 });
 
+app.get('/api/menuItems/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const menuItem = await prisma.menuItem.findUnique({
+      where: { id: parseInt(id, 10) },
+    });
+
+    if (!menuItem) {
+      res.status(404).json({ error: 'Menu item not found' });
+      return;
+    }
+
+    res.json(menuItem);
+  } catch (error) {
+    console.error('Error fetching menu item details:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/menuItems/:id/reviews', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reviews = await prisma.review.findMany({
+      where: { menuItemId: parseInt(id, 10) },
+    });
+
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 app.listen(8000, () => {
   console.log('Server running on http://localhost:8000 🎉 🚀');
 });
