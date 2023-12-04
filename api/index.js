@@ -17,8 +17,25 @@ app.use(morgan("dev"));
 
 const requireAuth = auth({
   audience: process.env.AUTH0_AUDIENCE,
-  issuerBaseURL: process.env.AUTH0_ISSUER,
+  issuerBaseURL: 'https://dev-5zuj6fq234xqqqwm.us.auth0.com',
   tokenSigningAlg: 'RS256'
+});
+
+app.patch('/api/updateProfile', requireAuth, async (req, res) => {
+  const { name } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: { name },
+    });
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error('Error updating user profile:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.get('/api/menuItems', async (req, res) => {
@@ -84,16 +101,11 @@ app.get('/api/menuItems/:id/reviews', async (req, res) => {
   }
 });
 
-app.listen(8000, () => {
-  console.log('Server running on http://localhost:8000 🎉 🚀');
-});
-
 app.post('/api/cart', async (req, res) => {
   try {
     const { menuItemId } = req.body;
-    // Update or create the Cart entry for the user (user might be authenticated or not)
     const updatedCart = await prisma.cart.upsert({
-      where: { id: menuItemId }, // Use menuItemId as the id in the where condition
+      where: { id: menuItemId }, 
       update: { quantity: { increment: 1 } },
       create: { menuItemId, quantity: 1 },
     });
@@ -104,6 +116,9 @@ app.post('/api/cart', async (req, res) => {
   }
 });
 
+app.listen(8000, () => {
+  console.log('Server running on http://localhost:8000 🎉 🚀');
+});
 
 app.patch('/api/cart/:itemId', async (req, res) => {
   const itemId = parseInt(req.params.itemId, 10);

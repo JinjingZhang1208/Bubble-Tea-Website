@@ -6,8 +6,9 @@ const Auth0ProviderWithHistory = ({ children }) => {
 
   return (
     <Auth0Provider
-      domain={domain}
+    domain={domain}
       clientId={clientId}
+      audience={process.env.REACT_APP_AUTH0_AUDIENCE} 
       redirectUri={window.location.origin}
     >
       {children}

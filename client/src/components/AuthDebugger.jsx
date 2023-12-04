@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const AuthDebugger = () => {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
 
-  const displayToken = async () => {
+  const displayToken = useCallback(async () => {
     if (isAuthenticated) {
       try {
         const token = await getAccessTokenSilently();
@@ -13,7 +13,13 @@ const AuthDebugger = () => {
         console.error('Error retrieving token:', error);
       }
     }
-  };
+  }, [getAccessTokenSilently, isAuthenticated]);
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      displayToken();
+    }
+  }, [displayToken, isAuthenticated]);
 
   return (
     <div>
