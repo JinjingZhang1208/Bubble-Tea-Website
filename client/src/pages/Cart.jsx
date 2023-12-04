@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './Cart.css'
+import { Link } from 'react-router-dom';
+import './Cart.css';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -47,23 +48,42 @@ const Cart = () => {
     }
   };
 
+  const handleQuantityChange = (itemId, newQuantity) => {
+    // Update the local state with the new quantity
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
   return (
-    <div>
+    <div className="cart-container">
       <h1>Your Cart</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul className='cartItem'>
+        <ul className="cartItem">
           {cartItems.map((item) => (
             <li key={item.id}>
-              {item.menuItem.name}              - Quantity: {item.quantity}
+              <span className="item-name">{item.menuItem.name}</span> - Quantity:{' '}
+              <input
+                type="number"
+                value={item.quantity}
+                onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+              />
             </li>
           ))}
         </ul>
       )}
+      <div className="cart-buttons">
+            <button className="checkout-button">Checkout</button>
+            <Link to="/">
+              <button className="return-button">Return to Menu</button>
+            </Link>
+      </div>
     </div>
   );
 };
 
 export default Cart;
-
