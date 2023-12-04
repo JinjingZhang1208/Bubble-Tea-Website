@@ -31,7 +31,6 @@ app.get('/api/menuItems', async (req, res) => {
   }
 });
 
-// Express.js route to add an item to the cart
 app.post('/api/cart', async (req, res) => {
   const { userId, menuItemName, quantity } = req.body;
 
@@ -57,10 +56,9 @@ app.post('/api/cart', async (req, res) => {
     res.json(cartItem);
   } catch (error) {
     console.error('Error adding item to cart:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 });
-
 
 // Express.js route to get cart items with MenuItem details
 app.get('/api/cart', async (req, res) => {

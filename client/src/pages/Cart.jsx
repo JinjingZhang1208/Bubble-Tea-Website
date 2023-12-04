@@ -81,8 +81,7 @@ const Cart = () => {
     }
   };
   
-    
-
+  
   return (
     <div className="cart-container">
       <h1>Your Cart</h1>

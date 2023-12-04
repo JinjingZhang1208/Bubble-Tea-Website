@@ -30,14 +30,14 @@ const Home = () => {
     fetchMenuItems();
   }, []);
   
-  const addToCart = async (menuItemId, itemName) => {
+  const addToCart = async (menuItemId) => {
     try {
       const response = await fetch('http://localhost:8000/api/cart', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ menuItemId, itemName }),
+        body: JSON.stringify({ menuItemId }),
       });
   
       if (response.ok) {
@@ -49,8 +49,8 @@ const Home = () => {
     } catch (error) {
       console.error('Error adding item to cart:', error);
     }
-  };
-  
+  };  
+
   if (loading) {
     return <div>Loading...</div>;
   }
