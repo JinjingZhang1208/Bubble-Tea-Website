@@ -4,19 +4,27 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 class MapComponent extends Component {
   render() {
     const mapStyles = {
-      width: '100%',
+      width: '50%',
       height: '400px',
     };
 
+    const location = { lat: 49.2827, lng: -123.1207 };
+    const googleMapsUrl = `https://www.google.com/maps?q=${location.lat},${location.lng}`;
+
     return (
-      <Map
-        google={this.props.google}
-        zoom={15}
-        style={mapStyles}
-        initialCenter={{ lat: 49.2827, lng:  -123.1207 }}
-      >
-        <Marker position={{ lat: 49.2827, lng: -123.1207}} />
-      </Map>
+      <div>
+        <Map
+          google={this.props.google}
+          zoom={15}
+          style={mapStyles}
+          initialCenter={location}
+        >
+          <Marker position={location} />
+        </Map>
+        <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+          Open in Google Maps
+        </a>
+      </div>
     );
   }
 }

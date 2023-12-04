@@ -7,9 +7,12 @@
 
 /* Footer styles */
 .footer {
-  background-color: var(--color5);
-  padding: 2rem 0;
-  color: var(--color1);
+  background-color: #e9d8a6;
+  color: #131313;
+  padding: 20px;
+  text-align: center;
+  /* Set the width here */
+  width: 100%;
 }
 
 .container {

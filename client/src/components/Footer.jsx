@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 import MapComponent from './MapComponent';
 
 const Footer = () => {
@@ -12,9 +13,14 @@ const Footer = () => {
             <p>No. 1 Bubble Tea Company in Vancouver.</p>
           </div>
           <div className='footer-section'>
-            <h3>Location</h3>
-            <p>No. 1234 Bubble Street, Vancouver, BC</p>
-          </div>
+      <h3>Location</h3>
+      <p>No. 1234 Bubble Street, Vancouver, BC</p>
+    
+
+      {/* Add an id to the element wrapping the MapComponent */}
+      <div id="map">
+      </div>
+    </div>
         </div>
         <div className='footer-section'>
           <p>&copy; 2023 northeasternbubbletea.com. All Rights Reserved.</p>
