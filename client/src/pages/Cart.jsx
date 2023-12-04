@@ -16,7 +16,8 @@ const Cart = () => {
         }
 
         const data = await response.json();
-        setCartItems(data.cart);
+        console.log('API Response:', data);
+        setCartItems(data || []);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -25,7 +26,7 @@ const Cart = () => {
     };
 
     fetchCartItems();
-  }, []); // Empty dependency array ensures the effect runs only once on mount
+  }, []);
 
   const addToCart = async (menuItemId) => {
     try {
@@ -66,7 +67,7 @@ const Cart = () => {
         <ul className="cartItem">
           {cartItems.map((item) => (
             <li key={item.id}>
-              <span className="item-name">{item.menuItem.name}</span> - Quantity:{' '}
+              <span className="item-name">{item.menuItem?.name || 'Unknown Item'}</span> - Quantity:{' '}
               <input
                 type="number"
                 value={item.quantity}
@@ -77,10 +78,10 @@ const Cart = () => {
         </ul>
       )}
       <div className="cart-buttons">
-            <button className="checkout-button">Checkout</button>
-            <Link to="/">
-              <button className="return-button">Return to Menu</button>
-            </Link>
+        <button className="checkout-button">Checkout</button>
+        <Link to="/">
+          <button className="return-button">Return to Menu</button>
+        </Link>
       </div>
     </div>
   );
