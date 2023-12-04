@@ -1,0 +1,34 @@
+/* Cart.css */
+
+/* Add styling to the cart container if needed */
+.cart-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Style for the cart item list */
+  .cartItem {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Style for each cart item */
+  .cartItem li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Style for the item name */
+  .cartItem li span.item-name {
+    font-weight: bold;
+  }
+  
+  /* Style for the item quantity */
+  .cartItem li span.item-quantity {
+    color: #555;
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+  

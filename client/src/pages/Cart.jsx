@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Cart.css'
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -52,10 +53,10 @@ const Cart = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <ul className='cartItem'>
           {cartItems.map((item) => (
             <li key={item.id}>
-              {item.menuItem.name} - Quantity: {item.quantity}
+              {item.menuItem.name}              - Quantity: {item.quantity}
             </li>
           ))}
         </ul>
