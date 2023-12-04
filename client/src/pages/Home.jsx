@@ -1,34 +1,56 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
-    const [menuItems, setMenuItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate(); 
   
-    useEffect(() => {
-      const fetchMenuItems = async () => {
-        try {
-          const response = await fetch('http://localhost:8000/api/menuItems');
-          if (!response.ok) {
-            const errorMessage = await response.text();
-            throw new Error(`Failed to fetch menu items - ${response.statusText}. ${errorMessage}`);
-          }
-          const data = await response.json();
-          console.log('Fetched Data:', data); // Add this line for debugging
-          setMenuItems(data);
-        } catch (error) {
-          console.error('Error fetching menu items:', error);
-          setError('Oops! Something went wrong. Please try again later.');
-        } finally {
-          setLoading(false);
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/menuItems');
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(`Failed to fetch menu items - ${response.statusText}. ${errorMessage}`);
         }
-      };
-  
-      fetchMenuItems();
-    }, []);
+        const data = await response.json();
+        console.log('Fetched Data:', data);
+        setMenuItems(data);
+      } catch (error) {
+        console.error('Error fetching menu items:', error);
+        setError('Oops! Something went wrong. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchMenuItems();
+  }, []);
+
+  const addToCart = async (menuItemId) => {
+    try {
+      const response = await fetch('http://localhost:8000/api/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ menuItemId }),
+      });
+  
+      if (response.ok) {
+        console.log('Item added to cart successfully!');
+        // No automatic redirection here
+      } else {
+        console.error('Failed to add item to cart:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };  
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -53,7 +75,7 @@ const Home = () => {
             <div className='item-text'>
               <h2>{item.name}</h2>
               <h3>{item.price}</h3>
-              <button>Add to Cart</button>
+              <button onClick={() => addToCart(item.id)}>Add to Cart</button>
               <Link to={`/detail/${item.id}`}>
                 <button>Detail</button>
               </Link>

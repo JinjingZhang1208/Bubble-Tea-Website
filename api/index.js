@@ -3,16 +3,23 @@ import { PrismaClient } from "@prisma/client";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
+import { auth } from 'express-oauth2-jwt-bearer';
 
 dotenv.config();
 
 const app = express();
+const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
-const prisma = new PrismaClient();
+
+const requireAuth = auth({
+  audience: process.env.AUTH0_AUDIENCE,
+  issuerBaseURL: process.env.AUTH0_ISSUER,
+  tokenSigningAlg: 'RS256'
+});
 
 app.get('/api/menuItems', async (req, res) => {
   try {
@@ -24,53 +31,42 @@ app.get('/api/menuItems', async (req, res) => {
   }
 });
 
-// Endpoint for user registration
-app.post('/api/register', async (req, res) => {
+app.post('/api/cart', async (req, res) => {
   try {
-    // Extract user data from the request body
-    const { auth0Id, name, email, emailVerified, picture } = req.body;
+    const { menuItemId } = req.body;
 
-    // Insert user data into the Prisma database
-    const newUser = await prisma.user.create({
-      data: {
-        auth0Id,
-        name,
-        email,
-        emailVerified,
-        picture,
+    // Update or create the Cart entry for the user (user might be authenticated or not)
+    const updatedCart = await prisma.cart.upsert({
+      where: { id: menuItemId }, // Use menuItemId as the id in the where condition
+      update: { quantity: { increment: 1 } },
+      create: { menuItemId, quantity: 1 },
+    });
+
+    res.status(200).json({ message: 'Item added to cart successfully', cart: updatedCart });
+  } catch (error) {
+    console.error('Error adding item to cart:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/cart', async (req, res) => {
+  try {
+    const cartItems = await prisma.cart.findMany({
+      include: {
+        menuItem: true,
       },
     });
 
-    // Send a success response
-    res.status(201).json({ message: 'User registered successfully', user: newUser });
+    console.log('Cart Items:', cartItems);
+
+    res.json({ cart: cartItems });
   } catch (error) {
-    console.error('Error registering user:', error);
+    console.error('Error fetching cart items:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
-// Endpoint for fetching user information by Auth0 ID
-app.get('/api/user/:auth0Id', async (req, res) => {
-  try {
-    const auth0Id = req.params.auth0Id;
 
-    // Fetch user data based on Auth0 ID
-    const user = await prisma.user.findUnique({
-      where: { auth0Id },
-    });
-
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ error: 'User not found' });
-    }
-  } catch (error) {
-    console.error('Error fetching user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// Start the HTTP server
 app.listen(8000, () => {
   console.log('Server running on http://localhost:8000 🎉 🚀');
 });

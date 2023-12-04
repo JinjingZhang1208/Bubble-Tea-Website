@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../img/boba.png';
-import CartLogo from "../img/shoppingCart.png";
-import "./Navbar.css";
+import CartLogo from '../img/shoppingCart.png';
+import './Navbar.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginComponent from './Login.jsx';
 
 const Navbar = () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  const navigate = useNavigate();
 
   const handleAuthAction = () => {
     if (isAuthenticated) {
@@ -18,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='navbar'>
+    <div className="navbar">
       <div className="container">
         <div className="logo">
           <img src={Logo} alt="logo" />
@@ -27,23 +28,24 @@ const Navbar = () => {
         <div className="links">
           {isAuthenticated ? (
             <>
-              <Link to="/profile" className="link">
-                <button style={{
+              <button
+                style={{
                   backgroundColor: '#131212',
                   color: '#e1e9ef',
                   border: 'none',
                   padding: '10px 15px',
                   fontSize: '18px',
                   cursor: 'pointer',
-                  width: '180px', 
-                  height: '40px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                }}>
-                  <h6>{user.name}</h6>
-                </button>
-              </Link>
+                  width: '180px',
+                  height: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                onClick={() => navigate(`/profile/`)} 
+              >
+                <h6>{user.name}</h6>
+              </button>
               <button onClick={handleAuthAction}>Logout</button>
             </>
           ) : (
