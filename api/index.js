@@ -31,36 +31,6 @@ app.get('/api/menuItems', async (req, res) => {
   }
 });
 
-app.post('/api/cart', async (req, res) => {
-  const { userId, menuItemName, quantity } = req.body;
-
-  try {
-    // Fetch the MenuItem by name to get its id
-    const menuItem = await prisma.menuItem.findUnique({
-      where: { name: menuItemName },
-    });
-
-    if (!menuItem) {
-      return res.status(404).json({ error: 'Item not found' });
-    }
-
-    // Add the item to the cart
-    const cartItem = await prisma.cart.create({
-      data: {
-        userId,
-        menuItemId: menuItem.id,
-        quantity,
-      },
-    });
-
-    res.json(cartItem);
-  } catch (error) {
-    console.error('Error adding item to cart:', error);
-    res.status(500).json({ error: 'Internal Server Error', details: error.message });
-  }
-});
-
-// Express.js route to get cart items with MenuItem details
 app.get('/api/cart', async (req, res) => {
   try {
     const cartItems = await prisma.cart.findMany({
@@ -68,18 +38,15 @@ app.get('/api/cart', async (req, res) => {
         menuItem: true,
       },
     });
-
     const cartWithDetails = cartItems.map((cartItem) => {
       return {
         id: cartItem.id,
         userId: cartItem.userId,
-        menuItem: cartItem.menuItem, // This will include the MenuItem details
+        menuItem: cartItem.menuItem, 
         quantity: cartItem.quantity,
         createdAt: cartItem.createdAt,
-        // ... other details
       };
     });
-
     res.json(cartWithDetails);
   } catch (error) {
     console.error('Error fetching cart items:', error);
@@ -93,12 +60,10 @@ app.get('/api/menuItems/:id', async (req, res) => {
     const menuItem = await prisma.menuItem.findUnique({
       where: { id: parseInt(id, 10) },
     });
-
     if (!menuItem) {
       res.status(404).json({ error: 'Menu item not found' });
       return;
     }
-
     res.json(menuItem);
   } catch (error) {
     console.error('Error fetching menu item details:', error);
@@ -112,7 +77,6 @@ app.get('/api/menuItems/:id/reviews', async (req, res) => {
     const reviews = await prisma.review.findMany({
       where: { menuItemId: parseInt(id, 10) },
     });
-
     res.json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
@@ -120,7 +84,37 @@ app.get('/api/menuItems/:id/reviews', async (req, res) => {
   }
 });
 
-// Express.js route to update the quantity in the cart
+app.listen(8000, () => {
+  console.log('Server running on http://localhost:8000 🎉 🚀');
+});
+
+
+app.post('/api/cart', async (req, res) => {
+  const { userId, menuItemName, quantity } = req.body;
+
+  try {
+    const menuItem = await prisma.menuItem.findUnique({
+      where: { name: menuItemName },
+    });
+
+    if (!menuItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    const cartItem = await prisma.cart.create({
+      data: {
+        userId,
+        menuItemId: menuItem.id,
+        quantity,
+      },
+    });
+
+    res.json(cartItem);
+  } catch (error) {
+    console.error('Error adding item to cart:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.patch('/api/cart/:itemId', async (req, res) => {
   const itemId = parseInt(req.params.itemId, 10);
   const { quantity } = req.body;
@@ -137,9 +131,4 @@ app.patch('/api/cart/:itemId', async (req, res) => {
     console.error('Error updating quantity in the database:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});
-
-
-app.listen(8000, () => {
-  console.log('Server running on http://localhost:8000 🎉 🚀');
 });

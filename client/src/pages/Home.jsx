@@ -42,7 +42,6 @@ const Home = () => {
   
       if (response.ok) {
         console.log('Item added to cart successfully!');
-        // No automatic redirection here
       } else {
         console.error('Failed to add item to cart:', response.status, response.statusText);
       }

@@ -14,21 +14,15 @@ const Footer = () => (
         <div className='footer-section'>
           <h3>Location</h3>
           <p>No. 1234 Bubble Street, Vancouver, BC</p>
-
-
-          {/* Add an id to the element wrapping the MapComponent */}
-          <div id="map">
-          </div>
         </div>
       </div>
       <div className='footer-section'>
         <p>&copy; 2023 northeasternbubbletea.com. All Rights Reserved.</p>
       </div>
     </div>
-    <div className='map-container'>
-      // 恢复！！！！
-      {/* <MapComponent /> */}
-    </div>
+    {/* <div className='map-container'>
+      <MapComponent />
+    </div> */}
   </div>
 
 );

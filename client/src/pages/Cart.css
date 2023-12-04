@@ -1,76 +1,55 @@
-/* Cart.css */
-
-/* Add styling to the cart container if needed */
 .cart-container {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  
-  /* Style for the cart item list */
-  .cartItem {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  /* Style for each cart item */
-  .cartItem li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  /* Style for the item name */
-  .cartItem li span.item-name {
-    font-weight: bold;
-  }
-  
-  /* Style for the item quantity */
-  .cartItem li span.item-quantity {
-    color: #555;
-    margin-left: 10px;
-  }
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
-/* Style for the cart buttons */
+.cartItem {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cartItem li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.cartItem li span.item-name {
+  font-weight: bold;
+}
+
+.cartItem li span.item-quantity {
+  color: #555;
+  margin-left: 10px;
+}
+
 .cart-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  /* Style for the checkout button */
-  .checkout-button {
-    padding: 10px;
-    background-color:  #e9d8a6;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  /* Hover effect for the checkout button */
-  .checkout-button:hover {
-    background-color: #218838;
-  }
-  
-  /* Style for the return to menu button */
-  .return-button {
-    padding: 10px;
-    background-color: #e9d8a6;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  /* Hover effect for the return to menu button */
-  .return-button:hover {
-    background-color: #218838;
-  }
-  
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  margin-top: 20px;
+}
+
+.checkout-button,
+.return-button {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px; 
+  background-color: #e9d8a6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-button:hover,
+.return-button:hover {
+  background-color: #218838;
+}

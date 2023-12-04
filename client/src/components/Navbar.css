@@ -45,18 +45,15 @@ body {
   align-items: center;
 }
 
-/* Logo styles */
 .logo img {
   max-width: 200px;
   height: auto;
 }
 
-/* Title styles */
 h1 {
   margin: 0;
 }
 
-/* Link styles */
 .links {
   display: flex;
   align-items: center;
@@ -69,7 +66,6 @@ h1 {
   font-size: 16px;
 }
 
-/* Button styles */
 .links button {
   background-color: #131212;
   color: #e1e9ef;
@@ -79,7 +75,6 @@ h1 {
   cursor: pointer;
 }
 
-/* Cart logo styles */
 .link img {
   max-width: 35px;
   height: auto;

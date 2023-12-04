@@ -1,5 +1,3 @@
-// Detail.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -69,7 +67,6 @@ const Detail = () => {
           <h3>{menuItem.price}</h3>
           <p>{menuItem.description}</p>
 
-          {/* Display reviews */}
           <h4>Reviews:</h4>
           <ul>
             {reviews.map((review) => (
