@@ -7,7 +7,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch('/api/cart');
+        const response = await fetch('http://localhost:8000/api/cart');
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -24,6 +24,27 @@ const Cart = () => {
 
     fetchCartItems();
   }, []); // Empty dependency array ensures the effect runs only once on mount
+
+  const addToCart = async (menuItemId) => {
+    try {
+      const response = await fetch('http://localhost:8000/api/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ menuItemId }),
+      });
+
+      if (response.ok) {
+        console.log('Item added to cart successfully!');
+        // No automatic redirection here
+      } else {
+        console.error('Failed to add item to cart:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
 
   return (
     <div>

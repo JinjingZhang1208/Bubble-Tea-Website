@@ -51,21 +51,13 @@ app.post('/api/cart', async (req, res) => {
 
 app.get('/api/cart', async (req, res) => {
   try {
-    const cartItems = await prisma.cart.findMany({
-      include: {
-        menuItem: true,
-      },
-    });
-
-    console.log('Cart Items:', cartItems);
-
-    res.json({ cart: cartItems });
+    const cartItems = await prisma.cart.findMany();
+    res.json(cartItems);
   } catch (error) {
     console.error('Error fetching cart items:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 app.listen(8000, () => {
   console.log('Server running on http://localhost:8000 🎉 🚀');
