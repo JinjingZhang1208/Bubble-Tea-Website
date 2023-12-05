@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Detail = () => {
   const { id } = useParams();
@@ -75,6 +76,9 @@ const Detail = () => {
           </ul>
         </div>
       </div>
+      <Link to='/'>
+        <button className='back-button'>Back to Menu</button>
+      </Link>
     </div>
   );
 };
