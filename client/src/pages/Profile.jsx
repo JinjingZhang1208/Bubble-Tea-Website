@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 
 const Profile = () => {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
   const [isEditing, setIsEditing] = useState(false);
-  const [newName, setNewName] = useState(user ? user.name : ''); 
-  const [displayName, setDisplayName] = useState(user ? user.name : ''); 
+  const [newName, setNewName] = useState(user ? user.name : '');
+  const [displayName, setDisplayName] = useState(user ? user.name : '');
 
   const displayToken = async () => {
     if (isAuthenticated) {
@@ -24,42 +25,55 @@ const Profile = () => {
   };
 
   const handleSaveClick = async () => {
-    // You can add logic here to update the user's name in the backend/API
-    // For now, we'll just log the new name to the console
     console.log('New Name:', newName);
 
     setIsEditing(false);
-    setDisplayName(newName); 
+    setDisplayName(newName);
   };
 
   useEffect(() => {
     displayToken();
-  }, []); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
 
   return (
-    <div>
-      <h2>User Profile</h2>
-      <div>
+    <div className="profile-container">
+      <div className="profile-header">
+        <h2>User Profile</h2>
+      </div>
+      <div className="user-details">
         {isEditing ? (
-          <>
+          <div className="edit-section">
             <input
               type="text"
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
+              className="edit-input"
             />
-            <button onClick={handleSaveClick}>Save</button>
-          </>
+            <button onClick={handleSaveClick} className="save-button">
+              Save
+            </button>
+          </div>
         ) : (
           <>
-            {user ? (
-              <>
+            <div className="info-container">
+              <div>
                 <p>Name: {displayName}</p>
-                <button onClick={handleEditClick}>Edit Name</button>
+                <div className="button-container">
+                  <button onClick={handleEditClick} className="save-button">
+                    Edit Name
+                  </button>
+                </div>
                 <p>Email: {user.email}</p>
-              </>
-            ) : (
-              <p>Loading...</p>
-            )}
+              </div>
+              
+            </div>
+            <div className="button-container">
+              <Link to="/">
+                <button className="return-button">Return to Menu</button>
+              </Link>
+            </div>
           </>
         )}
       </div>
