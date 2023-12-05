@@ -82,7 +82,7 @@ h1 {
 }
 
 /* Tablet */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 550px) {
   .navbar {
     padding: 15px 0;
   }
@@ -105,7 +105,7 @@ h1 {
 }
 
 /* Desktop */
-@media (min-width: 1024px) {
+@media (min-width: 800px)  {
   .navbar {
     padding: 20px 0;
   }
@@ -127,25 +127,3 @@ h1 {
   }
 }
 
-/* Mobile */
-@media (max-width: 767px) {
-  .navbar {
-    padding: 10px 0;
-  }
-
-  .container {
-    padding: 0 15px;
-  }
-
-  .logo img {
-    max-width: 120px;
-  }
-
-  .link {
-    margin-right: 10px;
-  }
-
-  .navbar button {
-    padding: 8px 12px;
-  }
-}
