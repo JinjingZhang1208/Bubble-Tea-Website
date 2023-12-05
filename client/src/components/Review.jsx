@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 
 const Review = ({ isAuthenticated }) => {
   const [review, setReview] = useState('');
+  const [comment, setComment] = useState('');
 
   const handleReviewSubmit = () => {
     console.log('Review Submitted:', review);
   };
 
   const handleCommentSubmit = () => {
-    console.log('Comment Submitted:', review);
+    console.log('Comment Submitted:', comment);
   };
 
   return (
@@ -17,7 +18,7 @@ const Review = ({ isAuthenticated }) => {
       <textarea
         rows="4"
         cols="50"
-        placeholder="Write your review here..."
+        placeholder="Write your review here"
         value={review}
         onChange={(e) => setReview(e.target.value)}
       ></textarea>
@@ -29,9 +30,9 @@ const Review = ({ isAuthenticated }) => {
           <textarea
             rows="4"
             cols="50"
-            placeholder="Write your comment here..."
-            value={review}
-            onChange={(e) => setReview(e.target.value)}
+            placeholder="Write your comment here"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           ></textarea>
           <br />
           <button onClick={handleCommentSubmit}>Submit Comment</button>
