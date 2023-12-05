@@ -10,6 +10,7 @@ import Profile from './pages/Profile.jsx';
 import NotFound from './pages/NotFound.jsx';
 import AuthDebugger from './components/AuthDebugger.jsx';
 import MapComponent from './components/MapComponent.jsx';
+import Checkout from './pages/Checkout.jsx';
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/detail/:id" element={<div><Navbar /><Detail /><Footer /></div>} />
             <Route path="/auth-debug" element={<AuthDebugger />} />
             <Route path="/map" element={<MapComponent />} />
+            <Route path="/checkout" element={<div><Navbar /><Checkout /><Footer /></div>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>

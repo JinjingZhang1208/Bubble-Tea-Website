@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import './Cart.css';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
 
   const fetchCartItems = async () => {
     try {
@@ -81,6 +85,16 @@ const Cart = () => {
     }
   };
 
+  const handleVerifyUser = async () => {
+      if (isAuthenticated) {
+          console.log('User is authorized. Redirecting to checkout...');
+          navigate('/checkout');
+        } else {
+          console.error('User is not authorized to proceed to checkout.');
+          alert('You are not authorized to proceed to checkout. Please log in or register.');
+        }
+      } 
+
   return (
     <div className="cart-container">
       <h1>Your Cart</h1>
@@ -107,11 +121,12 @@ const Cart = () => {
         <button className="clear-cart-button" onClick={handleClearCart}>
           Clear Cart
         </button>
-        <button className="checkout-button">Checkout</button>
+        <button className="checkout-button" onClick={handleVerifyUser}>
+          Checkout
+        </button>
         <Link to="/">
           <button className="return-button">Return to Menu</button>
         </Link>
-        
       </div>
     </div>
   );
