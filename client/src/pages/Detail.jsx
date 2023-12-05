@@ -90,9 +90,11 @@ const Detail = () => {
 
           {renderReviewForm()}
 
-          <Link className='back-button' to="/">
-            <button>Back to Menu</button>
-          </Link>
+          <div className='button-container'>
+            <button className='back-button' style={{ backgroundColor: '#e9d8a6', color: 'white' }}>
+              <Link to="/">Back to Menu</Link>
+            </button>
+          </div>
         </div>
       </div>
     </div>
