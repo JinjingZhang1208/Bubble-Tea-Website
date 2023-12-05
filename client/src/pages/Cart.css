@@ -38,18 +38,21 @@
 }
 
 .checkout-button,
-.return-button {
+.return-button,
+.clear-cart-button {
   padding: 10px;
   width: 100%;
   margin-bottom: 10px; 
   background-color: #e9d8a6;
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .checkout-button:hover,
-.return-button:hover {
-  background-color: #218838;
+.return-button:hover,
+.clear-cart-button: hover {
+  background-color: #ee9800;
 }

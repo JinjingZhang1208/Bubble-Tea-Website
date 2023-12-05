@@ -186,3 +186,17 @@ app.get('/api/menuItems/:id/reviews', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.post('/api/cart/clear', async (req, res) => {
+
+  try {
+    await prisma.cart.updateMany({
+      data: { quantity: 0 },
+    });
+
+    res.status(200).json({ message: 'All carts cleared successfully' });
+  } catch (error) {
+    console.error('Error clearing the carts in the database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
