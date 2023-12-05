@@ -1,6 +1,5 @@
+import React from 'react';
 import MapComponent from '../components/MapComponent';
-
-import React from 'react'
 
 const Location = () => {
   return (
