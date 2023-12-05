@@ -104,13 +104,14 @@ const Cart = () => {
         </ul>
       )}
       <div className="cart-buttons">
+        <button className="clear-cart-button" onClick={handleClearCart}>
+          Clear Cart
+        </button>
         <button className="checkout-button">Checkout</button>
         <Link to="/">
           <button className="return-button">Return to Menu</button>
         </Link>
-        <button className="clear-cart-button" onClick={handleClearCart}>
-          Clear Cart
-        </button>
+        
       </div>
     </div>
   );
