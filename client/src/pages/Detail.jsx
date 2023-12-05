@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import Review from '../components/Review';
 import { Link } from 'react-router-dom';
 
 const Detail = () => {
   const { id } = useParams();
+  const { isAuthenticated } = useAuth0();
   const [menuItem, setMenuItem] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +15,6 @@ const Detail = () => {
   useEffect(() => {
     const fetchMenuItemAndReviews = async () => {
       try {
-        // Fetch menu item details
         const menuItemResponse = await fetch(`http://localhost:8000/api/menuItems/${id}`);
         if (!menuItemResponse.ok) {
           const errorMessage = await menuItemResponse.text();
@@ -39,6 +41,17 @@ const Detail = () => {
 
     fetchMenuItemAndReviews();
   }, [id]);
+
+  const renderReviewForm = () => {
+    if (isAuthenticated) {
+      return (
+        <div>
+            <Review />
+        </div>
+      );
+    }
+    return null;
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -74,13 +87,17 @@ const Detail = () => {
               <li key={review.id}>{review.content}</li>
             ))}
           </ul>
+
+          {renderReviewForm()}
+
+          <Link className='back-button' to="/">
+            <button>Back to Menu</button>
+          </Link>
         </div>
       </div>
-      <Link to='/'>
-        <button className='back-button'>Back to Menu</button>
-      </Link>
     </div>
   );
 };
 
 export default Detail;
+

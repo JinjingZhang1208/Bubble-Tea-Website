@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 import { auth } from 'express-oauth2-jwt-bearer';
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -20,6 +21,20 @@ const requireAuth = auth({
   issuerBaseURL: 'https://dev-5zuj6fq234xqqqwm.us.auth0.com',
   tokenSigningAlg: 'RS256'
 });
+
+const authenticateJWT = (req, res, next) => {
+  const token = req.header('Authorization');
+  if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+  try {
+    const decoded = jwt.verify(token, 'https://dev-5zuj6fq234xqqqwm.us.auth0.com'); 
+    req.user = decoded;
+    next();
+  } catch (error) {
+    console.error('Error verifying JWT:', error);
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+};
 
 app.patch('/api/updateProfile', requireAuth, async (req, res) => {
   const { name } = req.body;
@@ -134,6 +149,40 @@ app.patch('/api/cart/:itemId', async (req, res) => {
     res.json(updatedCartItem);
   } catch (error) {
     console.error('Error updating quantity in the database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.post('/api/menuItems/:id/reviews', authenticateJWT, async (req, res) => {
+  const menuItemId = parseInt(req.params.id, 10);
+  const { content } = req.body;
+  const userId = req.user.id; 
+
+  try {
+    const review = await prisma.review.create({
+      data: {
+        content,
+        menuItemId,
+        userId,
+      },
+    });
+
+    res.status(201).json(review);
+  } catch (error) {
+    console.error('Error submitting review:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/api/menuItems/:id/reviews', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reviews = await prisma.review.findMany({
+      where: { menuItemId: parseInt(id, 10) },
+    });
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
