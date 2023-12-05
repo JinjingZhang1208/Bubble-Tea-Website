@@ -24,11 +24,6 @@
   flex-wrap: wrap;
 }
 
-.footer-section {
-  flex: 1 1 calc(33.33% - 2rem);
-  margin: 0 1rem;
-}
-
 h3 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
@@ -46,12 +41,9 @@ p {
   overflow: hidden;
 }
 
-.map-container {
-  width: 100%; 
-  max-width: 1690px;
-  margin-top: 50px;
-  position: relative;; 
-  bottom: 0; 
+.footer-section {
+  flex: 1 1 calc(33.33% - 2rem);
+  margin: 0 1rem;
 }
 
 /* Responsive styles for smaller screens */
@@ -66,4 +58,22 @@ p {
     margin-top: 1rem;
   }
 }
+
+/* Responsive styles for tablet */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .footer-section {
+    flex: 1 1 48%; 
+    margin: 0;
+    margin-top: 1rem;
+  }
+}
+
+/* Responsive styles for desktop */
+@media (min-width: 1024px) {
+  .footer-section {
+    flex: 1 1 calc(33.33% - 2rem);
+    margin: 0 1rem;
+  }
+}
+
 

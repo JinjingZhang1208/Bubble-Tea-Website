@@ -13,6 +13,7 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   max-width: 1200px;
   margin: 0 auto;
+  gap: 1rem; 
 }
 
 .item {
@@ -55,9 +56,39 @@ button:hover {
   background-color: var(--color10);
 }
 
-/* Responsive styles */
+/* Responsive styles for mobile*/
 @media (max-width: 768px) {
   .details {
     grid-template-columns: 1fr; 
 }
+}
+
+/* Responsive styles for tablet */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .details {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Responsive styles for desktop */
+@media (min-width: 1024px) {
+  .details {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
 }

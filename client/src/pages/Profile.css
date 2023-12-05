@@ -65,8 +65,8 @@
 
 .button-container {
   display: flex;
-  justify-content: flex-end; /* Align the buttons to the right */
-  margin-top: 10px; /* Add margin to separate the buttons */
+  justify-content: flex-end; 
+  margin-top: 10px;
 }
 
 /* Media Queries */

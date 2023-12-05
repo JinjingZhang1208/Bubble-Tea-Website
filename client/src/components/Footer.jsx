@@ -1,14 +1,14 @@
 import React from 'react';
 import './Footer.css';
-import MapComponent from './MapComponent';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
   <div className='footer'>
     <div className='container'>
       <div className='footer-content'>
-        <div className='footer-section'>
+        < div className='footer-section'>
           <h3>About Us</h3>
-          <p>No. 1 Bubble Tea Company in Vancouver.</p>
+          <p>No. 1 Bubble Tea Company in Vancouver. See Our Location: <Link to="/location">Location</Link></p>
         </div>
         <div className='footer-section'>
           <h3>Location</h3>
