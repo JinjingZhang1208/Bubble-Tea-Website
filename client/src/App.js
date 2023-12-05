@@ -9,6 +9,7 @@ import Login from './components/Login.jsx';
 import Profile from './pages/Profile.jsx';
 import NotFound from './pages/NotFound.jsx';
 import AuthDebugger from './components/AuthDebugger.jsx';
+import MapComponent from './components/MapComponent.jsx';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/profile" element={<div><Navbar /><Profile /><Footer /></div>} />
             <Route path="/detail/:id" element={<div><Navbar /><Detail /><Footer /></div>} />
             <Route path="/auth-debug" element={<AuthDebugger />} />
+            <Route path="/map" element={<MapComponent />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
