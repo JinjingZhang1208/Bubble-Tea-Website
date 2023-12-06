@@ -18,7 +18,7 @@ model User {
   // Relationships
   orders        Order[]
   reviews       Review[]
-  carts         Cart[]   // Add this line
+  carts         Cart[]  
 }
 
 model MenuItem {
@@ -31,7 +31,7 @@ model MenuItem {
   // Relationships
   reviews     Review[]
   orders      Order[]
-  carts       Cart[]   // Add this line
+  carts       Cart[]   
 }
 
 model Review {
