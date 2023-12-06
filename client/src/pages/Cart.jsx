@@ -34,15 +34,25 @@ const Cart = () => {
 
   const handleQuantityChange = async (itemId, newQuantity) => {
     try {
-      setCartItems((prevItems) =>
-        prevItems.map((item) =>
+      setCartItems((prevItems) => {
+        const updatedItems = prevItems.map((item) =>
           item.id === itemId ? { ...item, quantity: newQuantity } : item
-        )
-      );
-
+        );
+  
+        // Check if the item with the given ID exists in the cart
+        const itemExists = updatedItems.some((item) => item.id === itemId);
+  
+        // If the item does not exist in the cart, add it with the new quantity
+        if (!itemExists) {
+          updatedItems.push({ id: itemId, quantity: newQuantity });
+        }
+  
+        return updatedItems;
+      });
+  
       const apiUrl = `http://localhost:8000/api/cart/${itemId}`;
       console.log('API URL:', apiUrl);
-
+  
       const response = await fetch(apiUrl, {
         method: 'PATCH',
         headers: {
@@ -50,7 +60,7 @@ const Cart = () => {
         },
         body: JSON.stringify({ quantity: newQuantity }),
       });
-
+  
       if (!response.ok) {
         console.error(
           'Failed to update quantity in the database:',
@@ -64,6 +74,7 @@ const Cart = () => {
       console.error('Error updating quantity:', error);
     }
   };
+  
 
   const handleClearCart = async () => {
     try {
