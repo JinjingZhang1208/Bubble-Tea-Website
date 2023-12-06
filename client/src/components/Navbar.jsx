@@ -34,7 +34,7 @@ const Navbar = () => {
                   color: '#e1e9ef',
                   border: 'none',
                   padding: '10px 15px',
-                  fontSize: '18px',
+                  fontSize: '20px',
                   cursor: 'pointer',
                   width: '180px',
                   height: '40px',
