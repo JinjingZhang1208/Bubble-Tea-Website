@@ -200,3 +200,8 @@ app.post('/api/cart/clear', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+const PORT = parseInt(process.env.PORT) || 8080;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT} 🎉 🚀`);
+});

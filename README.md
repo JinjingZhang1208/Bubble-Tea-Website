@@ -14,3 +14,12 @@ INSERT INTO menuItems (id, name, description, price, picture) VALUES
   (5, 'Honeydew Bubble Tea', 'Sweet honeydew-flavored tea combined with milk and bouncy tapioca pearls.', 6.99, 'https://grosche.ca/wp-content/uploads/2022/06/26-e1655479414750.png.webp'),
   (6, 'Thai Coconut Bubble Tea', 'Coconut milk tea with a hint of Thai spices, complemented by chewy tapioca pearls.', 7.49, 'https://grosche.ca/wp-content/uploads/2022/06/26-e1655479414750.png.webp');
 '''
+
+3. I input user in my database:
+'''
+INSERT INTO User (auth0Id, name, email, emailVerified, picture)
+VALUES
+  ('jinjingz1208@gmail.com', 'YourName', 'jinjingz1208@gmail.com', true, 'https://example.com/picture.jpg');
+'''
+
+4. I deployed the database in my planetscale. I also tried to deploy my node.js to google cloud(But now it still shows 400 bad request). 

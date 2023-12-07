@@ -25,8 +25,8 @@
     display: block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
+    background-color: #ca6702;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -34,7 +34,7 @@
   }
   
   .confirm-button:hover {
-    background-color: #218838;
+    background-color: red;
   }
   
   /* Responsive Styles */
