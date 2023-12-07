@@ -2,7 +2,8 @@
 
 Bubble Tea Company website
 
-1. I have put the Lighthouse grades folder inside the assignment-03-jinjing-zhang folder
+1. I have put the Lighthouse grades folder inside the assignment-03-jinjing-zhang folder.
+authdebugger page: http://localhost:3000/auth-debug
 
 2. Because I put the menu items in the database, so you should first input these in the mysql in order to run the website with menu.
 '''
