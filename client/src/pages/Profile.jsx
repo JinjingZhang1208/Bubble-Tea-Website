@@ -33,7 +33,6 @@ const Profile = () => {
 
   useEffect(() => {
     displayToken();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
 

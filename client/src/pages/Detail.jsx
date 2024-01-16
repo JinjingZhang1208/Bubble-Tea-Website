@@ -23,7 +23,6 @@ const Detail = () => {
         const menuItemData = await menuItemResponse.json();
         setMenuItem(menuItemData);
 
-        // Fetch reviews for the menu item
         const reviewsResponse = await fetch(`http://localhost:8000/api/menuItems/${id}/reviews`);
         if (!reviewsResponse.ok) {
           const errorMessage = await reviewsResponse.text();

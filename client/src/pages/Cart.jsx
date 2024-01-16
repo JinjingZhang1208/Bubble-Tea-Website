@@ -38,11 +38,9 @@ const Cart = () => {
         const updatedItems = prevItems.map((item) =>
           item.id === itemId ? { ...item, quantity: newQuantity } : item
         );
-  
-        // Check if the item with the given ID exists in the cart
+
         const itemExists = updatedItems.some((item) => item.id === itemId);
   
-        // If the item does not exist in the cart, add it with the new quantity
         if (!itemExists) {
           updatedItems.push({ id: itemId, quantity: newQuantity });
         }

@@ -129,7 +129,6 @@ app.patch('/api/cart/:itemId', async (req, res) => {
   const { quantity } = req.body
 
   try {
-    // Update the quantity in the database
     const updatedCartItem = await prisma.cart.update({
       where: { id: itemId },
       data: { quantity: parseInt(quantity, 10) }
