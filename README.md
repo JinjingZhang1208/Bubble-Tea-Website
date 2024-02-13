@@ -16,4 +16,4 @@ INSERT INTO menuItems (id, name, description, price, picture) VALUES
   (6, 'Thai Coconut Bubble Tea', 'Coconut milk tea with a hint of Thai spices, complemented by chewy tapioca pearls.', 7.49, 'https://grosche.ca/wp-content/uploads/2022/06/26-e1655479414750.png.webp');
 '''
 
-3. I deployed the database in my planetscale. I also tried to deploy my node.js to google cloud(But now it still shows 400 bad request). 
+3. I deployed the database in my planetscale.
